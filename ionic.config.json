@@ -1,0 +1,7 @@
+{
+  "name": "Cashless Admin",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
