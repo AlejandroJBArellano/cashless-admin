@@ -1,0 +1,31 @@
+ion-content{
+  ion-grid{
+    ion-row{
+      &.cortes{
+        ion-col{
+          border: 2px solid rgba(255, 255, 255, 0.678);
+          p{
+            padding: 0;
+            margin: 10px;
+          }
+        }
+        ion-modal{
+          ng-template{
+            ion-content{
+              ion-grid{
+                ion-row{
+                  ion-col{
+                    text-align: center;
+                  }
+                }
+              }
+              p{
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

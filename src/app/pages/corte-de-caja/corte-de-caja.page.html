@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cortes de caja</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="cortes">
+      <ion-col size="2">
+        <p>Creado en:</p>
+      </ion-col>
+      <ion-col size="2">
+        <p>Saldo inicial y Saldo final efectivo:</p>
+      </ion-col>
+      <ion-col size="2">
+        <p>
+          Ventas en efectivo:
+
+        </p>
+      </ion-col>
+      <ion-col size="2">
+        <p>Dinero faltante o sobrante:</p>
+      </ion-col>
+      <ion-col size="2">
+        <p>Retiro o abono:</p>
+      </ion-col>
+      <ion-col size="2">
+        <p>Terminal y Nombre del usuario:</p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="cortes" *ngFor="let corte of cortes" (click)="openCorteModal(corte)">
+      <ion-modal [isOpen]="corte.modalOpen">
+        <ng-template>
+          <ion-content>
+            <ion-card>
+              <ion-title>Corte del {{corte.createdAt | date:'long'}}</ion-title>
+              <ion-grid>
+                <ion-row *ngFor="let order of corte.ordenesEfectivo">
+                  <ion-col size="3">{{order.terminal}}</ion-col>
+                  <ion-col size="3">
+                    <ion-chip color="primary" mode="ios" outline="true" *ngFor="let item of order.items">
+                      <ion-label>{{item.name}}</ion-label>
+                    </ion-chip>
+                  </ion-col>
+                  <ion-col size="3">{{order.userPin}}</ion-col>
+                  <ion-col size="3">{{order.paymentType}}</ion-col>
+                </ion-row>
+              </ion-grid>
+              <p>Saldo al inicio del corte: {{corte.saldoInicialEfectivo}}</p>
+              <p>Ventas totales en fectivo: {{corte.ventasEfectivo}}</p>
+              <p>Saldo esperado en este corte: {{corte.saldoEsperadoEfectivo}}</p>
+              <p>Saldo real en efectivo: {{corte.saldoRealEfectivo}}</p>
+              <p>Dinero faltante o sobrante en caja: {{corte.faltanteOSobrante}}</p>
+              <p>Efectivo retirado o abonado: {{corte.retiroOAbonoEfectivo}}</p>
+              <p>Saldo final en efectivo: {{corte.saldoFinalEfectivo}}</p>
+              <p>Usuario: {{corte.user.completeName}}</p>
+              <p>Terminal: {{corte.terminal}}</p>
+              <p>Creado el: {{corte.createdAt | date}}</p>
+            </ion-card>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+      <ion-col size="2">
+        <p>{{corte.createdAt | date:'long'}}</p>
+      </ion-col>
+      <ion-col size="2">
+        <p>Inicial: {{corte.saldoInicialEfectivo | currency}}</p>
+        <p>Final: {{corte.saldoFinalEfectivo | currency}}</p>
+      </ion-col>
+      <ion-col size="2">
+        <p>{{corte.ventasEfectivo | currency}}</p>
+      </ion-col>
+      <ion-col size="2">
+        <p>{{corte.faltanteOSobrante | currency}}</p>
+      </ion-col>
+      <ion-col size="2">
+        <p>{{corte.retiroOAbonoEfectivo | currency}}</p>
+      </ion-col>
+      <ion-col size="2">
+        <p>{{corte.terminal}}</p>
+        <p>{{corte.user.completeName}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="form">
+      <ion-col size="12">
+        <ion-title>
+          Crear Usuario
+        </ion-title>
+      </ion-col>
+      <ion-col size="4">
+        <ion-input type="text" placeholder="Nombre del perfil a buscar" [(ngModel)]="profileName" (ngModelChange)="onChangeInputProfileName()"></ion-input>
+        <ion-chip (click)="selectProfile(profileName)" color="primary" mode="ios" [outline]="!(profileName === profileNameSelected)" *ngFor="let profileName of profileNamesValid" outline="false">
+          <ion-label>{{profileName}}</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col size="4">
+        <ion-input type="text" placeholder="Nombre completo del nuevo usuario" [(ngModel)]="completeName"></ion-input>
+        <ion-title>{{completeName}}</ion-title>
+      </ion-col>
+      <ion-col size="4">
+        <ion-input type="number" placeholder="Pin para el nuevo usuario" [(ngModel)]="pin" (ngModelChange)="onChangeInputPin()"></ion-input>
+        <ion-title>{{pin}}</ion-title>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button (click)="createUser()" expand="block" fill="clear" shape="round">
+          Crear usuario
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="users">
+      <ion-col size="3">ID:</ion-col>
+      <ion-col size="2">Nombre del perfil:</ion-col>
+      <ion-col size="3">Nombre del Usuario:</ion-col>
+      <ion-col size="2">Pin:</ion-col>
+      <ion-col size="2">Acciones:</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let user of users" class="users">
+      <ion-col size="3">
+        <ion-label>{{user._id}}</ion-label>
+      </ion-col>
+      <ion-col size="2">
+        <ion-label>{{user.profileName}}</ion-label>
+        <div *ngIf="user.contentEditable">
+          <ion-chip (click)="selectProfileForSpecificUser(profileName, user)" color="primary" mode="ios" outline="true" *ngFor="let profileName of profileNamesValid">
+            <ion-label>{{profileName}}</ion-label>
+          </ion-chip>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <ion-label *ngIf="!user.contentEditable">{{user.completeName}}</ion-label>
+        <ion-input *ngIf="user.contentEditable" type="text" [(ngModel)]="user.completeName"></ion-input>
+      </ion-col>
+      <ion-col size="2">
+        <ion-label *ngIf="!user.contentEditable">{{user.pin}}</ion-label>
+        <ion-input *ngIf="user.contentEditable" type="number" [(ngModel)]="user.pin" (ngModelChange)="onChangeInputPin()"></ion-input>
+      </ion-col>
+      <ion-col size="2" class="actions">
+        <ion-icon (click)="booleanToEditUser(user)" name="create-outline"></ion-icon>
+        <ion-icon (click)="deleteUser(user._id)" name="trash-bin-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="12" *ngIf="user.contentEditable" class="edit-actions">
+        <ion-button (click)="editUser(user)" expand="fill" fill="solid" color="success">
+          Editar usuario
+        </ion-button>
+        <ion-button (click)="booleanToEditUser(user)" expand="block" fill="outline" color="danger">
+          Cancelar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

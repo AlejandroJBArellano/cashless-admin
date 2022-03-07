@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Crear Menú</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-col size="12">
+        <ion-chip (click)="deleteItem(item._id)" color="primary" outline="true" *ngFor="let item of newMenu">
+          <ion-label>
+            {{item.name}}
+          </ion-label>
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-chip>
+        <ion-button *ngIf="newMenu.length > 0" (click)="createMenu()" expand="block" fill="clear" shape="round">
+          Crear Menú
+        </ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Tipo de dato</ion-label>
+          <ion-select [value]="['name']" cancelText="cancelar" okText="seleccionar" multiple="true" placeholder="Selecciona uno" [(ngModel)]="selected">
+            <ion-select-option value="name">Nombre</ion-select-option>
+            <ion-select-option value="proveedor">Proveedor</ion-select-option>
+            <ion-select-option value="price">Precio</ion-select-option>
+            <ion-select-option value="_id">ID</ion-select-option>
+          </ion-select>
+          <ion-input (keyup)="searchItems()" [(ngModel)]="searchText" required placeholder="Buscar producto" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of itemsFounded" [style]="'background-color:' + item.colorHex + ';'">
+      <ion-col size="3">
+        {{item._id}}
+      </ion-col>
+      <ion-col size="3">
+        {{item.name}}
+      </ion-col>
+      <ion-col size="2">
+        {{item.price | currency}}
+      </ion-col>
+      <ion-col size="2">
+        {{item.proveedor}}
+      </ion-col>
+      <ion-col size="2" style="cursor: pointer;">
+        <ion-icon (click)="addItemToNewMenu(item)" color="success" name="add-circle-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Listado de Menús</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-col size="6" *ngFor="let menu of menus">
+        <ion-card>
+          <ion-title title="Copiar al portapapeles" style="cursor: pointer;" (click)="copyIdToClipboard(menu._id)">{{menu._id}}</ion-title>
+          <ion-chip *ngFor="let item of menu.items">
+            {{item.name}}
+            {{item.price | currency}}
+            {{item.proveedor}}
+          </ion-chip>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

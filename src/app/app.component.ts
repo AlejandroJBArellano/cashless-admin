@@ -5,13 +5,11 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+  public appPages: {title: string; url: string; icon: string;}[] = [
+    { title: 'Productos', url: '/item', icon: 'fast-food' },
+    { title: 'Perfiles', url: '/profile', icon: 'restaurant' },
+    { title: 'Usuarios', url: '/user', icon: 'person' },
+    { title: 'Cortes de Caja', url: '/corte', icon: 'stats-chart' }
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() {}

@@ -1,0 +1,47 @@
+ion-content{
+  user-select: none;
+  ion-grid{
+    ion-row{
+      &.users{
+        ion-col{
+          border: 2px solid rgba(255, 255, 255, 0.616);
+          padding: 15px;
+          display: flex;
+          place-items: center;
+          &:first-child{
+            display: block;
+            ion-label{
+              margin: 10px;
+            }
+          }
+          ion-input{
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+            background-color: rgba(94, 94, 94, 0.61);
+            &::selection{
+              color: red;
+            }
+          }
+          &.actions{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 20px;
+            ion-icon:first-child:hover{
+              color: rgb(255, 196, 0);
+            }
+            ion-icon:last-child:hover{
+              color: red;
+            }
+          }
+          &.edit-actions{
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}

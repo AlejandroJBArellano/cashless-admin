@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Crear producto</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-item>
+      <ion-label position="floating">Nombre del producto <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required autofocus="true" formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Color: <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="colorHex" type="color"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Precio: <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="number" formControlName="price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Proveedor: <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="text" formControlName="proveedor"></ion-input>
+    </ion-item>
+    <ion-button block color="primary" expand="block" type="submit" [disabled]="itemForm.invalid">
+      Crear Producto
+    </ion-button>
+  </form>
+  <ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">ID</ion-col>
+        <ion-col size="3">Nombre del producto</ion-col>
+        <ion-col size="2">Precio</ion-col>
+        <ion-col size="2">Proveedor</ion-col>
+        <ion-col size="2">Acciones</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let item of items" [style]="'background-color:' + item.colorHex + ';'">
+        <ion-col size="3">
+          {{item._id}}
+        </ion-col>
+        <ion-col size="3">
+          {{item.name}}
+        </ion-col>
+        <ion-col size="2">
+          {{item.price | currency}}
+        </ion-col>
+        <ion-col size="2">
+          {{item.proveedor}}
+        </ion-col>
+        <ion-col size="2" style="cursor: pointer;">
+          <ion-icon (click)="editItem(item)" [style]="'color:' + (item.contentEditable ? 'rgb(255, 208, 0);' : 'white;')" name="create-outline"></ion-icon>
+          <ion-icon (click)="deleteItem(item._id)" name="trash-bin-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="12" *ngIf="item.contentEditable">
+          <form (ngSubmit)="sendItemToChange(item)">
+            <ion-item>
+              <ion-label position="floating">Nombre del producto:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required name="name" value={{item.name}} [(ngModel)]="item.name" type="text" autofocus="true"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Color:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required name="colorHex" value={{item.colorHex}} [(ngModel)]="item.colorHex" type="color"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Precio:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-input type="number" name="price" value={{item.price}} [(ngModel)]="item.price"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Proveedor:<ion-text color="danger">*</ion-text></ion-label>
+              <ion-input type="text" name="proveedor" value={{item.proveedor}} [(ngModel)]="item.proveedor"></ion-input>
+            </ion-item>
+            <ion-button block color="primary" expand="block" type="submit" color="success">
+              Editar
+            </ion-button>
+            <ion-button color="danger" expand="block" (click)="editItem(item)" slot="end" size="small" fill="outline" shape="round" color="danger">
+              cancelar
+            </ion-button>
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>
