@@ -20,7 +20,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Color: <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input required formControlName="colorHex" type="color"></ion-input>
+      <input type="color" required formControlName="colorHex" >
     </ion-item>
     <ion-item>
       <ion-label position="floating">Precio: <ion-text color="danger">*</ion-text></ion-label>
@@ -68,7 +68,7 @@
             </ion-item>
             <ion-item>
               <ion-label position="floating">Color:<ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required name="colorHex" value={{item.colorHex}} [(ngModel)]="item.colorHex" type="color"></ion-input>
+              <input type="color" required name="colorHex" value={{item.colorHex}} [(ngModel)]="item.colorHex" >
             </ion-item>
             <ion-item>
               <ion-label position="floating">Precio:<ion-text color="danger">*</ion-text></ion-label>

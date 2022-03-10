@@ -17,10 +17,7 @@
         <p>Saldo inicial y Saldo final efectivo:</p>
       </ion-col>
       <ion-col size="2">
-        <p>
-          Ventas en efectivo:
-
-        </p>
+        <p>Ventas en efectivo:</p>
       </ion-col>
       <ion-col size="2">
         <p>Dinero faltante o sobrante:</p>
@@ -50,16 +47,18 @@
                   <ion-col size="3">{{order.paymentType}}</ion-col>
                 </ion-row>
               </ion-grid>
-              <p>Saldo al inicio del corte: {{corte.saldoInicialEfectivo}}</p>
-              <p>Ventas totales en fectivo: {{corte.ventasEfectivo}}</p>
-              <p>Saldo esperado en este corte: {{corte.saldoEsperadoEfectivo}}</p>
-              <p>Saldo real en efectivo: {{corte.saldoRealEfectivo}}</p>
-              <p>Dinero faltante o sobrante en caja: {{corte.faltanteOSobrante}}</p>
-              <p>Efectivo retirado o abonado: {{corte.retiroOAbonoEfectivo}}</p>
-              <p>Saldo final en efectivo: {{corte.saldoFinalEfectivo}}</p>
-              <p>Usuario: {{corte.user.completeName}}</p>
-              <p>Terminal: {{corte.terminal}}</p>
-              <p>Creado el: {{corte.createdAt | date}}</p>
+              <ion-card>
+                <p>Saldo al inicio del corte: {{corte.saldoInicialEfectivo}}</p>
+                <p>Ventas totales en fectivo: {{corte.ventasEfectivo}}</p>
+                <p>Saldo esperado en este corte: {{corte.saldoEsperadoEfectivo}}</p>
+                <p>Saldo real en efectivo: {{corte.saldoRealEfectivo}}</p>
+                <p>Dinero faltante o sobrante en caja: {{corte.faltanteOSobrante}}</p>
+                <p>Efectivo retirado o abonado: {{corte.retiroOAbonoEfectivo}}</p>
+                <p>Saldo final en efectivo: {{corte.saldoFinalEfectivo}}</p>
+                <p>Usuario: {{corte.user.completeName}}</p>
+                <p>Terminal: {{corte.terminal}}</p>
+                <p>Creado el: {{corte.createdAt | date}}</p>
+              </ion-card>
             </ion-card>
           </ion-content>
         </ng-template>

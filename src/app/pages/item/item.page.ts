@@ -49,12 +49,14 @@ export class ItemPage implements ViewDidEnter {
     const [itemFounded] = await this.itemService.getItemById(item._id).toPromise() as Item[]
     console.log("itemFounded",itemFounded)
     const menus = await this.menuService.getMenusByItem(itemFounded).toPromise() as {items: Item[]; _id: string;}[]
-    console.log(menus)
-    for await (const menu of menus) {
-      menu.items = menu.items.filter(({name}) => name !== itemFounded.name);
-      menu.items.push(item)
-      await this.menuService.editMenu(menu).toPromise()
-      console.log("menu",menu)
+    if(menus){
+      console.log(menus)
+      for await (const menu of menus) {
+        menu.items = menu.items.filter(({name}) => name !== itemFounded.name);
+        menu.items.push(item)
+        await this.menuService.editMenu(menu).toPromise()
+        console.log("menu",menu)
+      }
     }
     await this.itemService.changeItem(item).toPromise()
     this.editItem(item)

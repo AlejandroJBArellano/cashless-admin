@@ -1,4 +1,15 @@
 ion-content{
+  form{
+    ion-item{
+      input[type="color"]{
+        width: 140px;
+        padding: 15px;
+        margin-left: 60px;
+        margin-top: -5px;
+        height: 45px;
+      }
+    }
+  }
   ion-list{
     ion-grid{
       width: 100%;

@@ -50,7 +50,7 @@ export class ProfilePage implements ViewDidEnter {
     // }
     const usersToDelete = await this.userService.getUsersByParams({profileName: profile.profileName}).toPromise() as User[]
     console.log(usersToDelete)
-    if(confirm(`¿Estás seguro que quieres eliminar el perfil ${profile._id}? ${usersToDelete.length > 0 ? ' También se eliminarán a los usuarios ' : ''}${usersToDelete.map(e => `${e.completeName}`)}`)){
+    if(confirm(`¿Estás seguro que quieres eliminar el perfil ${profile.profileName}? ${usersToDelete.length > 0 ? ' También se eliminarán a los usuarios ' : ''}${usersToDelete.map(e => `${e.completeName}`)}`)){
       console.log('yes')
       await this.profileService.deleteProfile(profile._id).toPromise()
       for await (const user of usersToDelete) {
@@ -87,7 +87,8 @@ export class ProfilePage implements ViewDidEnter {
       for (const iterator of this.selected) {
         const array = this.items.filter(item =>
           item[iterator].toLowerCase().includes(this.searchText.toLowerCase()));
-        this.itemsFounded = [...this.itemsFounded, ...array]
+        console.log(array)
+        this.itemsFounded = [...array]
         this.itemsFounded = this.itemsFounded.filter((value, index, self) => index === self.findIndex((t) => t.name === value.name))
         return;
       }
