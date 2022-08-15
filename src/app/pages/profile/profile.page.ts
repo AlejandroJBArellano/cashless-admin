@@ -20,7 +20,7 @@ export class ProfilePage implements ViewDidEnter {
   public itemsFounded: Item[];
   public items: Item[];
   public searchText: string;
-  public selected: string;
+  public selected: string = "name";
   public newMenu: Item[] = [];
   public profileForm: Profile;
   public profileName: string;
