@@ -19,6 +19,7 @@ export class UserPage implements OnInit {
   public completeName: string;
   public profiles: Profile[]
   public profileNameSelected: string;
+  public profilesNamesForSpecificUser: string[];
   constructor(private userService: UserService,
     private profileService: ProfileService,
     private fb: FormBuilder) {
@@ -37,6 +38,7 @@ export class UserPage implements OnInit {
       (res: Profile[]) => {
         this.profiles = res;
         this.profileNamesValid = res.map( e => e.profileName);
+        this.profilesNamesForSpecificUser = res.map(({profileName}) => profileName)
         console.log(this.profileNamesValid);
       }
     );

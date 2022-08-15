@@ -125,6 +125,7 @@ export class ProfilePage implements ViewDidEnter {
     this.setEditProfile(profile)
   }
   public async addItemToMenuEditingProfile(profile: Profile){
+    profile.newItemId = profile.newItemId.trim()
     const [itemToNewMenu] = await this.itemService.getItemById(profile.newItemId).toPromise() as Item[]
     const menu = await this.menuService.getMenuById(profile.menu._id).toPromise() as {items: Item[]; _id: string;};
     profile.newItemId = ""

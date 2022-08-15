@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Órdenes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <p>Fecha:</p>
+        </ion-col>
+        <ion-col size="2">
+          <p>Total:</p>
+        </ion-col>
+        <ion-col size="2">
+          <p>Tipo de pago:</p>
+        </ion-col>
+        <ion-col size="2">
+          <p>Terminal:</p>
+        </ion-col>
+        <ion-col size="2">
+          <p>Productos:</p>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let order of orders">
+        <ion-col size="4">
+          <p>{{order.createdAt | date: 'long'}}</p>
+        </ion-col>
+        <ion-col size="2">
+          <p>{{order.total | currency}}</p>
+        </ion-col>
+        <ion-col size="2">
+          <p>{{order.paymentType}}</p>
+        </ion-col>
+        <ion-col size="2">
+          <p>{{order.terminal}}</p>
+        </ion-col>
+        <ion-col size="2">
+          <ion-chip (click)="alertId(item)" [style]="'background-color:' + item.colorHex" mode="ios" outline="true" *ngFor="let item of order.items">
+            <ion-label>{{item.name}}</ion-label>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

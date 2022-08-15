@@ -49,7 +49,7 @@
       <ion-col size="2">
         <ion-label>{{user.profileName}}</ion-label>
         <div *ngIf="user.contentEditable">
-          <ion-chip (click)="selectProfileForSpecificUser(profileName, user)" color="primary" mode="ios" outline="true" *ngFor="let profileName of profileNamesValid">
+          <ion-chip (click)="selectProfileForSpecificUser(profileName, user)" color="primary" mode="ios" outline="true" *ngFor="let profileName of profilesNamesForSpecificUser">
             <ion-label>{{profileName}}</ion-label>
           </ion-chip>
         </div>

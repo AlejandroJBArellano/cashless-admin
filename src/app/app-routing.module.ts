@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'corte',
     loadChildren: () => import('./pages/corte-de-caja/corte-de-caja.module').then( m => m.CorteDeCajaPageModule)
+  },
+  {
+    path: 'orders',
+    loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
   }
 ];
 
