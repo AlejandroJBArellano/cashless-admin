@@ -75,6 +75,7 @@ export class ProfilePage implements ViewDidEnter {
     this.itemsFounded.length = 0
     this.profileForm = null;
     this.profiles = await this.profileService.getProfiles().toPromise() as any
+    this.profileName = ""
   }
 
   public addItemToNewMenu(item: Item){
