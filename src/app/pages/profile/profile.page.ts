@@ -108,7 +108,7 @@ export class ProfilePage implements ViewDidEnter {
   }
 
   public async deleteItemFromMenu(profile: Profile, item: Item){
-    if(confirm(`¿Seguro que quieres eliminar ${item.name} del perfil ${profile.profileName}`)){
+    if(confirm(`¿Seguro que quieres eliminar ${item.name} del perfil ${profile.profileName}?`)){
       profile.menu.items = profile.menu.items.filter(i => i !== item)
       await this.menuService.editMenu(profile.menu).toPromise()
     }
