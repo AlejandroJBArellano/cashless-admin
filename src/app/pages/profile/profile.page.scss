@@ -40,6 +40,10 @@ ion-content{
           border: 2px solid rgba(255, 255, 255, 0.658);
           display: flex;
           place-items: center;
+          &.id{
+            display: block;
+            padding: 10px ;
+          }
           &:nth-child(3){
             display: block;
           }

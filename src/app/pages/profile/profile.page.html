@@ -73,10 +73,10 @@
       <ion-col size="2">Acciones</ion-col>
     </ion-row>
     <ion-row *ngFor="let profile of profiles" class="profiles">
-      <ion-col size="3">
+      <ion-col size="3" class="id">
         {{profile._id}}
       </ion-col>
-      <ion-col size="4">
+      <ion-col size="4" class="id">
         <ion-label *ngIf="!profile.contentEditable">{{profile.profileName}}</ion-label>
         <ion-input type="text" autofocus="true" *ngIf="profile.contentEditable" [(ngModel)]="profile.profileName" ></ion-input>
       </ion-col>
