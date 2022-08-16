@@ -74,7 +74,7 @@
     </ion-row>
     <ion-row *ngFor="let profile of profiles" class="profiles">
       <ion-col size="3">
-        <ion-label>{{profile._id}}</ion-label>
+        {{profile._id}}
       </ion-col>
       <ion-col size="4">
         <ion-label *ngIf="!profile.contentEditable">{{profile.profileName}}</ion-label>
