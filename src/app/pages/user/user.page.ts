@@ -39,7 +39,7 @@ export class UserPage implements OnInit {
         this.profiles = res;
         this.profileNamesValid = res.map( e => e.profileName);
         this.profilesNamesForSpecificUser = res.map(({profileName}) => profileName)
-        console.log(this.profileNamesValid);
+        console.table(this.profileNamesValid);
       }
     );
   }
@@ -62,6 +62,7 @@ export class UserPage implements OnInit {
     this.users = await this.userService.getUsers().toPromise() as User[];
   }
   public selectProfile(profileName: string){
+    console.log(profileName)
     if(profileName === this.profileNameSelected){
       this.profileNameSelected = ""
       this.profileNamesValid = this.profiles.filter(({profileName}) => profileName.toLowerCase().includes('')).map(({profileName})=>profileName)

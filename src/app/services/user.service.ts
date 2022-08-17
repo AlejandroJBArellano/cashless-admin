@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import Profile from '../types/Profile';
 import User from '../types/User';
 
@@ -7,7 +8,7 @@ import User from '../types/User';
   providedIn: 'root'
 })
 export class UserService {
-  public link = 'http://localhost:3000/user';
+  public link = `${environment.api}/user`;
   constructor(private http: HttpClient) { }
 
   createUser(user: User){

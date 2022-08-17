@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import Item from '../types/Item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
-  public link = 'http://localhost:3000/menu';
+  public link = `${environment.api}/menu`;
   public menus: {_id: string; items: Item[]};
   constructor(private http: HttpClient) { }
 

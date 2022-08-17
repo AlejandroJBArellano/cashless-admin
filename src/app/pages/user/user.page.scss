@@ -2,6 +2,14 @@ ion-content{
   user-select: none;
   ion-grid{
     ion-row{
+      &.form{
+        ion-col{
+          ion-label{
+            margin: 10px;
+            // font-size: 1.2rem;
+          }
+        }
+      }
       &.users{
         ion-col{
           border: 2px solid rgba(255, 255, 255, 0.616);

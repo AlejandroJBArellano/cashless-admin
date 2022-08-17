@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import Item from '../types/Item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
-  private link = 'http://localhost:3000/item';
+  private link = `${environment.api}/item`
   constructor(private http: HttpClient) {}
 
   createItem(item: Item){

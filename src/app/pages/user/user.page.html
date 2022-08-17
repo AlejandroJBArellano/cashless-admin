@@ -16,18 +16,19 @@
         </ion-title>
       </ion-col>
       <ion-col size="4">
-        <ion-input type="text" placeholder="Nombre del perfil a buscar" [(ngModel)]="profileName" (ngModelChange)="onChangeInputProfileName()"></ion-input>
-        <ion-chip (click)="selectProfile(profileName)" color="primary" mode="ios" [outline]="!(profileName === profileNameSelected)" *ngFor="let profileName of profileNamesValid" outline="false">
-          <ion-label>{{profileName}}</ion-label>
-        </ion-chip>
+        <ion-label>Selecciona el perfil</ion-label>
+        <ion-select [multiple]="false" interface="action-sheet" multiple="true" placeholder="Perfil para el nuevo usuario" #select (ionChange)="selectProfile(select.value)">          <ion-select-option *ngFor="let profileNameValid of profileNamesValid" [value]="profileNameValid">
+            {{profileNameValid | titlecase}}
+          </ion-select-option>
+        </ion-select>
       </ion-col>
       <ion-col size="4">
+        <ion-label>Nombre</ion-label>
         <ion-input type="text" placeholder="Nombre completo del nuevo usuario" [(ngModel)]="completeName"></ion-input>
-        <ion-title>{{completeName}}</ion-title>
       </ion-col>
       <ion-col size="4">
+        <ion-label>Pin</ion-label>
         <ion-input type="number" placeholder="Pin para el nuevo usuario" [(ngModel)]="pin" (ngModelChange)="onChangeInputPin()"></ion-input>
-        <ion-title>{{pin}}</ion-title>
       </ion-col>
       <ion-col size="12">
         <ion-button (click)="createUser()" expand="block" fill="clear" shape="round">
